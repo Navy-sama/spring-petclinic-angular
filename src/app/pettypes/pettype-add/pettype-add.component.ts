@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {PetType} from '../pettype';
-import {PetTypeService} from '../pettype.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { PetType } from '../pettype';
+import { PetTypeService } from '../pettype.service';
 
 @Component({
+  standalone: false,
   selector: 'app-pettype-add',
   templateUrl: './pettype-add.component.html',
   styleUrls: ['./pettype-add.component.css']

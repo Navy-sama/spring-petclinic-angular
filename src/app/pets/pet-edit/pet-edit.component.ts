@@ -21,18 +21,19 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {Pet} from '../pet';
-import {PetService} from '../pet.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Owner} from '../../owners/owner';
-import {PetType} from '../../pettypes/pettype';
-import {PetTypeService} from '../../pettypes/pettype.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pet } from '../pet';
+import { PetService } from '../pet.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Owner } from '../../owners/owner';
+import { PetType } from '../../pettypes/pettype';
+import { PetTypeService } from '../../pettypes/pettype.service';
 
 import * as moment from 'moment';
-import {OwnerService} from '../../owners/owner.service';
+import { OwnerService } from '../../owners/owner.service';
 
 @Component({
+  standalone: false,
   selector: 'app-pet-edit',
   templateUrl: './pet-edit.component.html',
   styleUrls: ['./pet-edit.component.css']
@@ -45,10 +46,10 @@ export class PetEditComponent implements OnInit {
   errorMessage: string;
 
   constructor(private petService: PetService,
-              private petTypeService: PetTypeService,
-              private ownerService: OwnerService,
-              private router: Router,
-              private route: ActivatedRoute) {
+    private petTypeService: PetTypeService,
+    private ownerService: OwnerService,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.pet = {} as Pet;
     this.currentOwner = {} as Owner;
     this.currentType = {} as PetType;

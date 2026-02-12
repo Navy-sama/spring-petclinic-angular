@@ -20,12 +20,13 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {OwnerService} from '../owner.service';
-import {Owner} from '../owner';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { OwnerService } from '../owner.service';
+import { Owner } from '../owner';
+import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-owner-add',
   templateUrl: './owner-add.component.html',
   styleUrls: ['./owner-add.component.css']

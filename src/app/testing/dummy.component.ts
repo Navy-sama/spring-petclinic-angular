@@ -20,9 +20,10 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
+  standalone: false,
   template: ''
 })
 export class DummyComponent {

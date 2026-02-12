@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {PetType} from '../pettype';
-import {Router} from '@angular/router';
-import {PetTypeService} from '../pettype.service';
-import {Specialty} from '../../specialties/specialty';
+import { Component, OnInit } from '@angular/core';
+import { PetType } from '../pettype';
+import { Router } from '@angular/router';
+import { PetTypeService } from '../pettype.service';
+import { Specialty } from '../../specialties/specialty';
 import { finalize } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-pettype-list',
   templateUrl: './pettype-list.component.html',
   styleUrls: ['./pettype-list.component.css']
@@ -29,7 +30,7 @@ export class PettypeListComponent implements OnInit {
     ).subscribe(
       pettypes => this.pettypes = pettypes,
       error => this.errorMessage = error as any
-      );
+    );
   }
 
   deletePettype(pettype: PetType) {

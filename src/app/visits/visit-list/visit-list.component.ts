@@ -20,12 +20,13 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {Visit} from '../visit';
-import {VisitService} from '../visit.service';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Visit } from '../visit';
+import { VisitService } from '../visit.service';
+import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-visit-list',
   templateUrl: './visit-list.component.html',
   styleUrls: ['./visit-list.component.css']
@@ -53,10 +54,10 @@ export class VisitListComponent implements OnInit {
       response => {
         this.responseStatus = response;
         console.log('delete success');
-        this.visits.splice(this.visits.indexOf(visit), 1 );
+        this.visits.splice(this.visits.indexOf(visit), 1);
         if (this.visits.length === 0) {
-            this.noVisits = true;
-          }
+          this.noVisits = true;
+        }
       },
       error => this.errorMessage = error as any);
   }

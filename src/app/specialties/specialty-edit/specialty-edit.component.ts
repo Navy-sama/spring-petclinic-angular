@@ -20,12 +20,13 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {Specialty} from '../specialty';
-import {SpecialtyService} from '../specialty.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Specialty } from '../specialty';
+import { SpecialtyService } from '../specialty.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-specialty-edit',
   templateUrl: './specialty-edit.component.html',
   styleUrls: ['./specialty-edit.component.css']
@@ -52,7 +53,7 @@ export class SpecialtyEditComponent implements OnInit {
         this.onBack();
       },
       error => this.errorMessage = error as any);
- }
+  }
 
   onBack() {
     this.router.navigate(['/specialties']);

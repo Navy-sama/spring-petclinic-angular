@@ -21,12 +21,13 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {PetService} from '../pet.service';
-import {Pet} from '../pet';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PetService } from '../pet.service';
+import { Pet } from '../pet';
 
 @Component({
+  standalone: false,
   selector: 'app-pet-list',
   templateUrl: './pet-list.component.html',
   styleUrls: ['./pet-list.component.css']

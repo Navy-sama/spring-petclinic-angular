@@ -20,19 +20,20 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {Visit} from '../visit';
-import {VisitService} from '../visit.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {PetService} from '../../pets/pet.service';
-import {Pet} from '../../pets/pet';
-import {PetType} from '../../pettypes/pettype';
-import {Owner} from '../../owners/owner';
+import { Component, OnInit } from '@angular/core';
+import { Visit } from '../visit';
+import { VisitService } from '../visit.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PetService } from '../../pets/pet.service';
+import { Pet } from '../../pets/pet';
+import { PetType } from '../../pettypes/pettype';
+import { Owner } from '../../owners/owner';
 
 import * as moment from 'moment';
-import {OwnerService} from '../../owners/owner.service';
+import { OwnerService } from '../../owners/owner.service';
 
 @Component({
+  standalone: false,
   selector: 'app-visit-add',
   templateUrl: './visit-add.component.html',
   styleUrls: ['./visit-add.component.css']
@@ -47,10 +48,10 @@ export class VisitAddComponent implements OnInit {
   errorMessage: string;
 
   constructor(private visitService: VisitService,
-              private petService: PetService,
-              private ownerService: OwnerService,
-              private router: Router,
-              private route: ActivatedRoute) {
+    private petService: PetService,
+    private ownerService: OwnerService,
+    private router: Router,
+    private route: ActivatedRoute) {
     this.visit = {} as Visit;
     this.currentPet = {} as Pet;
     this.currentOwner = {} as Owner;

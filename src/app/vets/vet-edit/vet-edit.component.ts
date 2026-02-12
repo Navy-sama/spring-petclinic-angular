@@ -20,15 +20,16 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {Vet} from '../vet';
-import {VetService} from '../vet.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SpecialtyService} from '../../specialties/specialty.service';
-import {Specialty} from '../../specialties/specialty';
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Vet } from '../vet';
+import { VetService } from '../vet.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SpecialtyService } from '../../specialties/specialty.service';
+import { Specialty } from '../../specialties/specialty';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-vet-edit',
   templateUrl: './vet-edit.component.html',
   styleUrls: ['./vet-edit.component.css']
@@ -44,14 +45,14 @@ export class VetEditComponent implements OnInit {
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder, private specialtyService: SpecialtyService,
-              private vetService: VetService, private route: ActivatedRoute, private router: Router) {
+    private vetService: VetService, private route: ActivatedRoute, private router: Router) {
     this.vet = {} as Vet;
     this.specList = [] as Specialty[];
     this.buildForm();
   }
 
   buildForm() {
-this.idCtrl = new FormControl(null);
+    this.idCtrl = new FormControl(null);
     this.firstNameCtrl = new FormControl('', [Validators.required, Validators.minLength(2)]);
     this.lastNameCtrl = new FormControl('', [Validators.required, Validators.minLength(2)]);
     this.specialtiesCtrl = new FormControl(null);

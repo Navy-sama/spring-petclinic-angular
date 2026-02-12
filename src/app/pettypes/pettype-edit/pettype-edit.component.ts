@@ -20,12 +20,13 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {PetType} from '../pettype';
-import {PetTypeService} from '../pettype.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { PetType } from '../pettype';
+import { PetTypeService } from '../pettype.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-pettype-edit',
   templateUrl: './pettype-edit.component.html',
   styleUrls: ['./pettype-edit.component.css']

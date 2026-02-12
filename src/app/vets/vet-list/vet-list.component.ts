@@ -20,13 +20,14 @@
  * @author Vitaliy Fedoriv
  */
 
-import {Component, OnInit} from '@angular/core';
-import {Vet} from '../vet';
-import {VetService} from '../vet.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Vet } from '../vet';
+import { VetService } from '../vet.service';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 
 @Component({
+  standalone: false,
   selector: 'app-vet-list',
   templateUrl: './vet-list.component.html',
   styleUrls: ['./vet-list.component.css']
