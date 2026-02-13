@@ -1,33 +1,36 @@
 ARG DOCKER_HUB="docker.io"
-ARG NGINX_VERSION="1.17.6"
-ARG NODE_VERSION="16.3-alpine"
+ARG NGINX_VERSION="1.27-alpine"
+ARG NODE_VERSION="20-alpine"
 
 FROM $DOCKER_HUB/library/node:$NODE_VERSION as build
 
+WORKDIR /workspace
 
-COPY . /workspace/
+COPY package*.json ./
 
-ARG NPM_REGISTRY=" https://registry.npmjs.org"
+ARG NPM_REGISTRY="https://registry.npmjs.org"
+ARG API_URL="http://backend:9966/petclinic/api/"
 
-RUN echo "registry = \"$NPM_REGISTRY\"" > /workspace/.npmrc                              && \
-    cd /workspace/                                                                       && \
-    npm install                                                                          && \
-    npm run build
+RUN echo "registry = \"$NPM_REGISTRY\"" > .npmrc && \
+    npm ci --only=production=false
+
+COPY . .
+
+# Injecter l'URL du backend dans les fichiers d'environnement
+RUN sed -i "s|REST_API_URL:.*|REST_API_URL: '${API_URL}'|g" src/environments/environment.prod.ts
+
+RUN npm run build
 
 FROM $DOCKER_HUB/library/nginx:$NGINX_VERSION AS runtime
 
+COPY --from=build /workspace/dist/ /usr/share/nginx/html/
 
-COPY  --from=build /workspace/dist/ /usr/share/nginx/html/
-
-RUN chmod a+rwx /var/cache/nginx /var/run /var/log/nginx                        && \
+RUN chmod a+rwx /var/cache/nginx /var/run /var/log/nginx && \
     sed -i.bak 's/listen\(.*\)80;/listen 8080;/' /etc/nginx/conf.d/default.conf && \
     sed -i.bak 's/^user/#user/' /etc/nginx/nginx.conf
-
 
 EXPOSE 8080
 
 USER nginx
 
-HEALTHCHECK     CMD     [ "service", "nginx", "status" ]
-
-
+HEALTHCHECK CMD ["wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/", "||", "exit", "1"]

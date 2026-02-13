@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "spring-petclinic-angular:build"
+            "buildTarget": "spring-petclinic-angular:build"
           }
         },
         "test": {
